@@ -1,8 +1,9 @@
-services:
+version: '3.8'
 
+services:
   mailserver:
     image: analogic/poste.io
-    container_name: bytegdl_mailserver
+    container_name: mailserver
     restart: unless-stopped
     network_mode: "host"
     expose:
@@ -17,7 +18,7 @@ services:
       - "995"
     environment:
       - TZ=Europe/Madrid
-      - h=mail.tudominio.com # Dirección del servidor de mail hosting
+      - h=${MAIL_HOST}  # Dirección del servidor de mail hosting
       - HTTP_PORT=7080
       - HTTPS_PORT=7443
       - DISABLE_CLAMAV=FALSE  # TRUE 
